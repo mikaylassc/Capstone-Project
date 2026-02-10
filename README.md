@@ -12,4 +12,4 @@ This program helps pet owners determine basic care recommendations for their dog
 - Python 3.14.2
 
 ## Author
-Mikayla Settles-Chambers
+Mikayla Settles-Chambers 
