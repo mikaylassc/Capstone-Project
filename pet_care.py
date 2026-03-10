@@ -70,3 +70,66 @@ while True:
     else:
         print("Thank you for using the Pet Care Assistant!")
         break
+    
+"""
+Milestone 3 Additions: Strings and Data Structures (Modules 6–8)
+
+I expanded the Pet Care Assistant by adding strings, lists, dictionaries, and iteration to manage pet care information more effectively.
+
+1. I created a dictionary called care_database that stores recommended activities and care tips for each life stage (puppy, adult, senior).
+
+2. Each life stage stores a list of recommended activities. Lists allow multiple pieces of related information to be grouped together.
+
+3. I created a function called display_stage_activities(stage) that retrieves the list of activities from the dictionary and iterates through it using a for loop.
+
+4. String formatting is used when displaying information so that the output is easier to read for the user.
+
+These additions demonstrate meaningful use of data structures and improve the program’s ability to organize and display pet care recommendations.
+"""
+
+# Dictionary that stores care recommendations for each life stage
+care_database = {
+    "puppy": [
+        "Short play sessions throughout the day",
+        "Basic obedience training",
+        "Socialization with people and other dogs"
+    ],
+    "adult": [
+        "Daily walks or runs",
+        "Interactive toys for mental stimulation",
+        "Consistent feeding and exercise schedule"
+    ],
+    "senior": [
+        "Gentle walks and light activity",
+        "Comfortable sleeping areas",
+        "More frequent health checkups"
+    ]
+}
+
+# Function that displays recommended activities for the dog's life stage
+def display_stage_activities(stage):
+    print(f"\nRecommended activities for a {stage}:")  # string formatting
+    
+    activities = care_database.get(stage, [])
+    
+    # iterate through the list of activities
+    for activity in activities:
+        print(f"- {activity}")
+    
+while True:
+    choice = input("Would you like additional life stage advice? (yes/no): ").lower()
+    
+    if choice == "yes":
+        age_input = int(input("Enter the dog's age again: "))
+        
+        stage = get_life_stage(age_input)
+        tips = extra_care_tips(stage)
+        
+        print("Life Stage:", stage)
+        print("Additional Advice:", tips)
+
+        display_stage_activities(stage)   # <-- ADD THIS LINE HERE
+        
+    else:
+        print("Thank you for using the Pet Care Assistant!")
+        break
