@@ -19,6 +19,16 @@ In Milestone 2, the program was expanded to include functions and a loop, improv
 - Parameters and return values  
 - Loop control using `while` and `break`  
 
+## Module 9: File Handling
+
+This program uses a JSON file (`pet_data.json`) to store pet care data.
+
+- The `load_data()` function loads saved data when the program starts.
+- The `save_data()` function writes data to the file after each run.
+- Error handling ensures the program does not crash if the file is missing or corrupted.
+
+This allows the Pet Care Assistant to retain data between executions.
+
 ## Technologies Used
 - Python 3.14.2
 
