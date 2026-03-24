@@ -133,3 +133,141 @@ while True:
     else:
         print("Thank you for using the Pet Care Assistant!")
         break
+"""
+This program provides advice on pet care based on a dog's age and activity level.
+It has been expanded to include:
+- Functions and loops 
+- Data structures like dictionaries and lists 
+- File handling to save and load data (Module 9)
+"""
+import json  # Used to save and load data from a file
+
+FILE_NAME = "pet_data.json"  # File where pet data will be stored
+def load_data():
+    """
+    Loads saved pet care data from a JSON file.
+    If the file does not exist or is corrupted, returns a default database.
+    """
+    try:
+        with open(FILE_NAME, "r") as file:
+            data = json.load(file)
+            print("Pet data loaded successfully.")
+            return data
+
+    except FileNotFoundError:
+        print("No saved data found. Using default care recommendations.")
+        return get_default_database()
+
+    except json.JSONDecodeError:
+        print("File error. Resetting to default data.")
+        return get_default_database()
+
+
+def save_data(care_database):
+    """
+    Saves the current care database to a JSON file.
+    Prevents data loss between program runs.
+    """
+    try:
+        with open(FILE_NAME, "w") as file:
+            json.dump(care_database, file, indent=4)
+        print("Pet data saved.")
+
+    except Exception as e:
+        print("Error saving data:", e)
+
+
+def get_default_database():
+    """
+    Returns the default pet care recommendations.
+    This is used if no file exists yet.
+    """
+    return {
+        "puppy": [
+            "Short play sessions throughout the day",
+            "Basic obedience training",
+            "Socialization with people and other dogs"
+        ],
+        "adult": [
+            "Daily walks or runs",
+            "Interactive toys for mental stimulation",
+            "Consistent feeding and exercise schedule"
+        ],
+        "senior": [
+            "Gentle walks and light activity",
+            "Comfortable sleeping areas",
+            "More frequent health checkups"
+        ]
+    }
+
+def get_life_stage(age):
+    """Determines whether the dog is a puppy, adult, or senior."""
+    if age < 2:
+        return "puppy"
+    elif 2 <= age <= 7:
+        return "adult"
+    else:
+        return "senior"
+
+
+def extra_care_tips(stage):
+    """Provides additional care advice based on life stage."""
+    if stage == "puppy":
+        return "Puppies benefit from training and socialization."
+    elif stage == "adult":
+        return "Adult dogs need consistent exercise and a balanced diet."
+    else:
+        return "Senior dogs may need joint support and more frequent vet visits."
+
+
+def display_stage_activities(stage, care_database):
+    """
+    Displays recommended activities for a given life stage.
+    Uses a dictionary and loops (Modules 6–8).
+    """
+    print(f"\nRecommended activities for a {stage}:")
+
+    activities = care_database.get(stage, [])
+
+    for activity in activities:
+        print(f"- {activity}")
+
+# MAIN PROGRAM
+
+print("Welcome to the Pet Care Assistant!")
+
+# Load saved data 
+care_database = load_data()
+
+while True:
+    # Ask user for input
+    dog_age = int(input("\nEnter your dog's age in years: "))
+    activity_level = input("Is your dog low, medium, or high energy? ").lower()
+
+    # Basic advice logic (original milestone)
+    if dog_age < 2 and activity_level == "high":
+        print("Your dog is young and energetic. Make sure they get plenty of exercise!")
+    elif 2 <= dog_age <= 7 and activity_level == "medium":
+        print("Your dog is an adult with moderate energy. Regular walks are recommended.")
+    else:
+        print("Your dog may benefit from a calmer routine and regular vet checkups.")
+
+    # Use functions
+    stage = get_life_stage(dog_age)
+    tips = extra_care_tips(stage)
+
+    print("Life Stage:", stage)
+    print("Additional Advice:", tips)
+
+    # Display stored activities
+    display_stage_activities(stage, care_database)
+
+    # Save data (even if unchanged, ensures file exists)
+    save_data(care_database)
+
+    # Ask user if they want to continue
+    choice = input("\nWould you like to check another dog? (yes/no): ").lower()
+
+    if choice != "yes":
+        print("Thank you for using the Pet Care Assistant!")
+        break
