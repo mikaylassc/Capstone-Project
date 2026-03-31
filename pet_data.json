@@ -1,0 +1,17 @@
+{
+    "puppy": [
+        "Short play sessions throughout the day",
+        "Basic obedience training",
+        "Socialization with people and other dogs"
+    ],
+    "adult": [
+        "Daily walks or runs",
+        "Interactive toys for mental stimulation",
+        "Consistent feeding and exercise schedule"
+    ],
+    "senior": [
+        "Gentle walks and light activity",
+        "Comfortable sleeping areas",
+        "More frequent health checkups"
+    ]
+}

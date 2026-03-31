@@ -55,22 +55,7 @@ def extra_care_tips(stage):
     else:
         return "Senior dogs may need joint support and more frequent vet visits."
     # Loop to allow the user to check multiple dogs
-while True:
-    choice = input("Would you like additional life stage advice? (yes/no): ").lower()
-    
-    if choice == "yes":
-        age_input = int(input("Enter the dog's age again: "))
-        
-        stage = get_life_stage(age_input)   # calling function 1
-        tips = extra_care_tips(stage)       # calling function 2
-        
-        print("Life Stage:", stage)
-        print("Additional Advice:", tips)
-        
-    else:
-        print("Thank you for using the Pet Care Assistant!")
-        break
-    
+
 """
 Milestone 3 Additions: Strings and Data Structures (Modules 6–8)
 
@@ -109,27 +94,27 @@ care_database = {
 # Function that displays recommended activities for the dog's life stage
 def display_stage_activities(stage):
     print(f"\nRecommended activities for a {stage}:")  # string formatting
-    
+
     activities = care_database.get(stage, [])
-    
+
     # iterate through the list of activities
     for activity in activities:
         print(f"- {activity}")
-    
+
 while True:
     choice = input("Would you like additional life stage advice? (yes/no): ").lower()
-    
+
     if choice == "yes":
         age_input = int(input("Enter the dog's age again: "))
-        
+
         stage = get_life_stage(age_input)
         tips = extra_care_tips(stage)
-        
+
         print("Life Stage:", stage)
         print("Additional Advice:", tips)
 
         display_stage_activities(stage)   # <-- ADD THIS LINE HERE
-        
+
     else:
         print("Thank you for using the Pet Care Assistant!")
         break
@@ -271,3 +256,78 @@ while True:
     if choice != "yes":
         print("Thank you for using the Pet Care Assistant!")
         break
+
+"""
+Milestone 5: Object-Oriented Programming
+"""
+class Dog:
+    """
+    Represents a dog and provides care advice
+    based on age and activity level using OOP.
+    """
+    def __init__(self, age, activity_level):
+        self.age = age
+        self.activity_level = activity_level
+
+    def get_basic_advice(self):
+        """Returns basic advice based on age and energy."""
+        if self.age < 2 and self.activity_level == "high":
+            return "Your dog is young and energetic. Make sure they get plenty of exercise!"
+        elif 2 <= self.age <= 7 and self.activity_level == "medium":
+            return "Your dog is an adult with moderate energy. Regular walks are recommended."
+        else:
+            return "Your dog may benefit from a calmer routine and regular vet checkups."
+
+    def get_life_stage(self):
+        """Determines the dog's life stage."""
+        if self.age < 2:
+            return "puppy"
+        elif 2 <= self.age <= 7:
+            return "adult"
+        else:
+            return "senior"
+
+    def extra_care_tips(self):
+        """Provides additional care advice based on life stage."""
+        stage = self.get_life_stage()
+        if stage == "puppy":
+            return "Puppies benefit from training and socialization."
+        elif stage == "adult":
+            return "Adult dogs need consistent exercise and a balanced diet."
+        else:
+            return "Senior dogs may need joint support and more frequent vet visits."
+
+
+# -------------------------------
+# OOP Version User Loop
+# -------------------------------
+print("\n--- OOP Version: Check another dog using the Dog class ---")
+
+while True:
+    # Ask user for input
+    dog_age = int(input("\nEnter your dog's age in years: "))
+    activity_level = input("Is your dog low, medium, or high energy? ").lower()
+
+    # Create a Dog object
+    my_dog = Dog(dog_age, activity_level)
+
+    # Display advice using object methods
+    print("\n" + my_dog.get_basic_advice())
+    stage = my_dog.get_life_stage()
+    print("Life Stage:", stage)
+    print("Additional Advice:", my_dog.extra_care_tips())
+
+    # Display recommended activities using existing dictionary
+    display_stage_activities(stage, care_database)
+
+    # Save current care database (optional, keeps file consistent)
+    save_data(care_database)
+
+    # Ask user if they want to continue
+    choice = input("\nWould you like to check another dog using the OOP version? (yes/no): ").lower()
+    if choice != "yes":
+        print("Thank you for using the Pet Care Assistant (OOP version)!")
+        break
+
+
+    
