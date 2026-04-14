@@ -328,6 +328,213 @@ while True:
     if choice != "yes":
         print("Thank you for using the Pet Care Assistant (OOP version)!")
         break
+# -------------------------------
+# Milestone 6: Error Handling & Libraries
+# -------------------------------
 
+import json
+import random
+from datetime import datetime
+
+FILE_NAME = "pet_data.json"
+LOG_FILE = "activity_log.txt"
+
+
+# -------------------------------
+# File Handling Functions
+# -------------------------------
+def load_data():
+    try:
+        with open(FILE_NAME, "r") as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return get_default_database()
+    except json.JSONDecodeError:
+        print("Error reading file. Resetting data.")
+        return get_default_database()
+
+
+def save_data(care_database):
+    try:
+        with open(FILE_NAME, "w") as file:
+            json.dump(care_database, file, indent=4)
+    except Exception as e:
+        print("Error saving data:", e)
+
+
+def get_default_database():
+    return {
+        "puppy": [
+            "Short play sessions throughout the day",
+            "Basic obedience training",
+            "Socialization with people and other dogs"
+        ],
+        "adult": [
+            "Daily walks or runs",
+            "Interactive toys for mental stimulation",
+            "Consistent feeding and exercise schedule"
+        ],
+        "senior": [
+            "Gentle walks and light activity",
+            "Comfortable sleeping areas",
+            "More frequent health checkups"
+        ]
+    }
+
+
+# -------------------------------
+# Input Validation (TRY/EXCEPT)
+# -------------------------------
+def get_valid_age():
+    """
+    Safely gets numeric age input from the user.
+    Prevents crashes using try/except.
+    """
+    while True:
+        try:
+            age = int(input("\nEnter your dog's age in years: "))
+            if age < 0:
+                print("Age cannot be negative.")
+                continue
+            return age
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+
+def get_valid_activity_level():
+    """
+    Ensures user enters a valid activity level.
+    """
+    valid_levels = ["low", "medium", "high"]
+
+    while True:
+        level = input("Is your dog low, medium, or high energy? ").lower()
+        if level in valid_levels:
+            return level
+        else:
+            print("Invalid input. Please type low, medium, or high.")
+
+
+# -------------------------------
+# Core Logic Functions
+# -------------------------------
+def get_life_stage(age):
+    if age < 2:
+        return "puppy"
+    elif 2 <= age <= 7:
+        return "adult"
+    else:
+        return "senior"
+
+
+def extra_care_tips(stage):
+    if stage == "puppy":
+        return "Puppies benefit from training and socialization."
+    elif stage == "adult":
+        return "Adult dogs need consistent exercise and a balanced diet."
+    else:
+        return "Senior dogs may need joint support and more frequent vet visits."
+
+
+def display_stage_activities(stage, care_database):
+    print(f"\nRecommended activities for a {stage}:")
+    activities = care_database.get(stage, [])
+
+    for activity in activities:
+        print(f"- {activity}")
+
+
+# -------------------------------
+# Library Usage Functions
+# -------------------------------
+def get_random_tip(stage, care_database):
+    """
+    Uses random library to return a random tip.
+    Includes error handling.
+    """
+    try:
+        tips = care_database.get(stage, [])
+        if tips:
+            return random.choice(tips)
+        else:
+            return "No tips available."
+    except Exception as e:
+        return f"Error getting tip: {e}"
+
+
+def log_activity(stage):
+    """
+    Uses datetime library to log user actions.
+    """
+    try:
+        with open(LOG_FILE, "a") as file:
+            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            file.write(f"{timestamp} - Checked advice for a {stage}\n")
+    except Exception as e:
+        print("Logging error:", e)
+
+
+# -------------------------------
+# OOP CLASS
+# -------------------------------
+class Dog:
+    def __init__(self, age, activity_level):
+        self.age = age
+        self.activity_level = activity_level
+
+    def get_basic_advice(self):
+        if self.age < 2 and self.activity_level == "high":
+            return "Your dog is young and energetic. Make sure they get plenty of exercise!"
+        elif 2 <= self.age <= 7 and self.activity_level == "medium":
+            return "Your dog is an adult with moderate energy. Regular walks are recommended."
+        else:
+            return "Your dog may benefit from a calmer routine and regular vet checkups."
+
+    def get_life_stage(self):
+        return get_life_stage(self.age)
+
+    def extra_care_tips(self):
+        return extra_care_tips(self.get_life_stage())
+
+
+# -------------------------------
+# MAIN PROGRAM
+# -------------------------------
+print("Welcome to the Pet Care Assistant (Final Version)")
+
+care_database = load_data()
+
+while True:
+    # Safe input (error handling)
+    dog_age = get_valid_age()
+    activity_level = get_valid_activity_level()
+
+    # Create object
+    my_dog = Dog(dog_age, activity_level)
+
+    # Display advice
+    print("\n" + my_dog.get_basic_advice())
+
+    stage = my_dog.get_life_stage()
+    print("Life Stage:", stage)
+    print("Additional Advice:", my_dog.extra_care_tips())
+
+    # Show activities
+    display_stage_activities(stage, care_database)
+
+    # Library feature: random tip
+    print("Bonus Tip:", get_random_tip(stage, care_database))
+
+    # Log activity (library + file handling)
+    log_activity(stage)
+
+    # Save data
+    save_data(care_database)
+
+    # Continue loop
+    choice = input("\nWould you like to check another dog? (yes/no): ").lower()
+    if choice != "yes":
+        print("Thank you for using the Pet Care Assistant!")
+        break
 
     
