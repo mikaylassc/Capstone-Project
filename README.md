@@ -1,5 +1,4 @@
-Pet Care Assistant – Capstone Project
-Author: Mikayla Settles-Chambers
+Pet Care Assistant – Capstone Project, Author: Mikayla Settles-Chambers
 
 This project is a Pet Care Assistant program I built in Python that gives advice based on a dog’s age and activity level. The goal was to take everything I learned throughout the course and combine it into one program that actually works and feels useful. It starts with basic inputs from the user and then gives personalized recommendations like exercise suggestions, life stage (puppy, adult, or senior), and extra care tips.
 
@@ -9,7 +8,6 @@ For the final milestone, I added an automation feature that analyzes how the pro
 
 Overall, this project shows how I built something step by step, starting simple and gradually adding more complexity while keeping everything connected and functional.
 
-AI Usage Disclosure
-
+AI Usage Disclosure:
 I used AI (ChatGPT, based on OpenAI’s GPT-5.3 model) as a tool to help me throughout this project. I mainly used it to debug issues, improve how my code was organized, and get suggestions for features that matched the assignment requirements. However, I made sure to go through everything, understand how it works, and put the final program together myself. The AI was more like a helper or guide, not something that replaced my work.
 
