@@ -1,36 +1,15 @@
-# Capstone Project – Pet Care Assistant
+Pet Care Assistant – Capstone Project
+Author: Mikayla Settles-Chambers
 
-## Project Description
-This program helps pet owners determine basic care recommendations for their dog based on age and activity level. It uses user input, variables, and conditional statements to provide simple feedback.
-In Milestone 2, the program was expanded to include functions and a loop, improving organization and allowing repeated user interaction without restarting the program.
+This project is a Pet Care Assistant program I built in Python that gives advice based on a dog’s age and activity level. The goal was to take everything I learned throughout the course and combine it into one program that actually works and feels useful. It starts with basic inputs from the user and then gives personalized recommendations like exercise suggestions, life stage (puppy, adult, or senior), and extra care tips.
 
-## Features
-- Accepts user input for dog age and activity level
-- Uses conditional logic to determine care advice
-- Defines and calls multiple functions with parameters and return values
-- Implements a while loop for repeated interaction
-- Demonstrates foundational Python concepts including variables, conditionals, functions, and loops
+As the project developed, I added more advanced features like functions, loops, dictionaries, and file handling to organize the data better and make the program more interactive. I also used object-oriented programming by creating a Dog class, which made the code cleaner and easier to manage. On top of that, I included error handling so the program doesn’t crash if the user enters invalid input, and I used libraries like random and datetime to add extra features like bonus tips and activity logging.
 
-## Concepts Demonstrated
-- Variables and data types  
-- User input and type casting  
-- Conditional statements (`if`, `elif`, `else`)  
-- Function definition and function calls  
-- Parameters and return values  
-- Loop control using `while` and `break`  
+For the final milestone, I added an automation feature that analyzes how the program is used. It reads from a log file that tracks each time advice is generated, counts how often each life stage is selected, and then creates a report showing total usage, the most common life stage, and a full breakdown. That report is also saved to a file, which shows how automation and file operations can be used in a real program.
 
-## Module 9: File Handling
+Overall, this project shows how I built something step by step, starting simple and gradually adding more complexity while keeping everything connected and functional.
 
-This program uses a JSON file (`pet_data.json`) to store pet care data.
+AI Usage Disclosure
 
-- The `load_data()` function loads saved data when the program starts.
-- The `save_data()` function writes data to the file after each run.
-- Error handling ensures the program does not crash if the file is missing or corrupted.
+I used AI (ChatGPT, based on OpenAI’s GPT-5.3 model) as a tool to help me throughout this project. I mainly used it to debug issues, improve how my code was organized, and get suggestions for features that matched the assignment requirements. However, I made sure to go through everything, understand how it works, and put the final program together myself. The AI was more like a helper or guide, not something that replaced my work.
 
-This allows the Pet Care Assistant to retain data between executions.
-
-## Technologies Used
-- Python 3.14.2
-
-## Author
-Mikayla Settles-Chambers 
