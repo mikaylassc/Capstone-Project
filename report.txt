@@ -1,0 +1,6 @@
+Pet Care Assistant Report
+Total checks: 1
+Most common stage: adult
+puppy: 0
+adult: 1
+senior: 0
