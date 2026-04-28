@@ -1,13 +1,63 @@
-Pet Care Assistant – Capstone Project, Author: Mikayla Settles-Chambers
+# Pet Care Assistant – Capstone Project
 
-This project is a Pet Care Assistant program I built in Python that gives advice based on a dog’s age and activity level. The goal was to take everything I learned throughout the course and combine it into one program that actually works and feels useful. It starts with basic inputs from the user and then gives personalized recommendations like exercise suggestions, life stage (puppy, adult, or senior), and extra care tips.
+**Author:** Mikayla Settles-Chambers
 
-As the project developed, I added more advanced features like functions, loops, dictionaries, and file handling to organize the data better and make the program more interactive. I also used object-oriented programming by creating a Dog class, which made the code cleaner and easier to manage. On top of that, I included error handling so the program doesn’t crash if the user enters invalid input, and I used libraries like random and datetime to add extra features like bonus tips and activity logging.
+## Project Description
 
-For the final milestone, I added an automation feature that analyzes how the program is used. It reads from a log file that tracks each time advice is generated, counts how often each life stage is selected, and then creates a report showing total usage, the most common life stage, and a full breakdown. That report is also saved to a file, which shows how automation and file operations can be used in a real program.
+This project is a Pet Care Assistant program I built in Python that gives advice based on a dog’s age and activity level. The goal was to take everything I've learned throughout the CMSC 111 course and combine it into one program that works efficiently and feels useful.
 
-Overall, this project shows how I built something step by step, starting simple and gradually adding more complexity while keeping everything connected and functional.
+The final and most updated version of this program is **(2pet_care.py)**, which includes all improvements made across each milestone. I also kept my original version of the program **(pet_care.py)** in the repository so that it can be referenced for my starting point and to see how the project evolved over time.
 
-AI Usage Disclosure:
-I used AI (ChatGPT, based on OpenAI’s GPT-5.3 model) as a tool to help me throughout this project. I mainly used it to debug issues, improve how my code was organized, and get suggestions for features that matched the assignment requirements. However, I made sure to go through everything, understand how it works, and put the final program together myself. The AI was more like a helper or guide, not something that replaced my work.
+The program takes user input and provides personalized recommendations such as life stage (puppy, adult, or senior), exercise suggestions, and additional care tips.
 
+---
+
+## Features Implemented
+
+* User input for dog age and activity level
+* Life stage classification (puppy, adult, senior)
+* Personalized pet care recommendations
+* Organized code using functions
+* Use of dictionaries to manage data
+* Object-oriented programming with a `Dog` class
+* Error handling using try/except to prevent crashes
+* File handling to store and read data
+* Automation feature that logs usage and generates a report
+* Bonus tips using the `random` library
+* Activity/log tracking using the `datetime` library
+
+---
+
+## Modules Used
+
+* `random` – used to generate random bonus tips
+* `datetime` – used for logging and tracking program usage
+* Built-in Python features (no external installations required)
+
+---
+
+## Instructions to Run the Program
+
+1. Open the project folder in VS Code
+2. Locate the final version of the program: **2pet_care.py**
+3. Open the terminal in VS Code
+4. Run the program using:
+
+   ```
+   python 2pet_care.py
+   ```
+
+   or
+
+   ```
+   python3 2pet_care.py
+   ```
+5. Follow the prompts in the terminal to enter your dog’s information
+
+Note: The program will automatically create and update log/report files as it runs.
+
+---
+
+## AI Usage Disclosure
+
+I used AI (ChatGPT, based on OpenAI’s GPT-5.3 model) as a tool to help me throughout this project. AI was used it to debug issues, improve code organization, and get suggestions for features that matched the assignment requirements. I made sure to run everything, understand how it works, and build the final program myself. The AI acted as a guide, not a replacement for my work.
